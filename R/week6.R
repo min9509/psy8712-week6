@@ -15,5 +15,7 @@ mean(str_length(citations_txt)) # The average number of characters in each citat
 sample(citations_txt, 20)
 
 citations_tbl <- tibble(line = 1:length(citations_txt), cite = citations_txt) %>%
-  mutate(cite = str_replace_all(cite, pattern = "[\"']", replacement = ""))
+  mutate(cite = str_replace_all(cite, pattern = "[\"']", replacement = "")) %>%
+  mutate(year = str_extract (cite, pattern = "\\b\\d{4}\\b"))
+         
 citations_tbl
