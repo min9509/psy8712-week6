@@ -18,10 +18,9 @@ citations_tbl <- tibble(line = 1:length(citations_txt), cite = citations_txt) %>
   mutate(cite = str_replace_all(cite, pattern = "[\"']", replacement = "")) %>%
   mutate(year = str_extract(cite, pattern = "\\b\\d{4}\\b")) %>%
   mutate(page_start = str_match(cite, pattern = "([\\d]+)-") [,2]) %>%
-  mutate(perf_ref = str_detect(cite, pattern = regex("performance", ignore_case = TRUE))) %>%
-  mutate(title = str_match(cite, pattern = "\\)\\.\\s([A-Z][^.]+[?!.])")[,2])
+  mutate(perf_ref = str_detect(cite, pattern = regex("performance", ignore_case = TRUE))) %>%  # Some data shows NA...
+  mutate(title = str_match(cite, pattern = "\\)\\.\\s([A-Za-z][^.]+[?!.])")[,2]) %>% # Some data shows NA...
+  mutate(first_author = str_extract(cite, pattern = "([A-Za-z]+),\\s([A-Z])(?:\\.\\s)?(?:([A-Z])(?:\\.\\s)?)?")) 
 
 
-         
 citations_tbl
-
