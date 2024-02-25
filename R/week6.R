@@ -11,5 +11,6 @@ citations_txt <- citations[!stri_isempty(citations)]
 length(citations) - length(citations_txt) # The number of blank lines eliminated
 mean(str_length(citations_txt)) # The average number of characters in each citation
 
-
+# Data Cleaning
+sample(citations_txt, 20)
 
