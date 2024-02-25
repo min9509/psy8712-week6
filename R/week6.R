@@ -16,6 +16,8 @@ sample(citations_txt, 20)
 
 citations_tbl <- tibble(line = 1:length(citations_txt), cite = citations_txt) %>%
   mutate(cite = str_replace_all(cite, pattern = "[\"']", replacement = "")) %>%
-  mutate(year = str_extract (cite, pattern = "\\b\\d{4}\\b"))
+  mutate(year = str_extract(cite, pattern = "\\b\\d{4}\\b")) %>%
+  mutate(page_start = str_match(string = cite, pattern = "([\\d]+)-") [,2])
          
 citations_tbl
+
