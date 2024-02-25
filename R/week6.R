@@ -14,5 +14,6 @@ mean(str_length(citations_txt)) # The average number of characters in each citat
 # Data Cleaning
 sample(citations_txt, 20)
 
-citations_tbl <- tibble(line = 1:length(citations_txt), cite = citations_txt)
+citations_tbl <- tibble(line = 1:length(citations_txt), cite = citations_txt) %>%
+  mutate(cite = str_replace_all(cite, pattern = "[\"']", replacement = ""))
 citations_tbl
